@@ -9,3 +9,7 @@
 
 # 临时的验证目录
 tools/verify/
+
+# 本地数据，不公开
+plan/
+progress.json

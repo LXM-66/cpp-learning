@@ -7,8 +7,6 @@ C++ 源码、学习笔记与工具链配置。代码按天组织在 `code/` 下�
 ```
 code/           源代码，按天/主题分目录（如 code/day01/hello.cpp）
 notes/          笔记与排错记录（现象 → 原因 → 解决）
-plan/           路线安排数据（按阶段划分）
-progress.json   进度记录
 tools/          辅助脚本
 ```
 
