@@ -1,0 +1,296 @@
+[
+  {
+    "day": 43,
+    "week": 7,
+    "title": "左值、右值与 std::move",
+    "goal": "理解移动语义到底在省什么",
+    "blocks": [
+      { "m": 40, "t": "左值与右值、右值引用 &&、std::move 只是一个类型转换" },
+      { "m": 50, "t": "写一个类，在拷贝构造和移动构造里各打印一行，观察什么时候调用哪个" },
+      { "m": 30, "t": "为什么移动能省时间（大对象、长字符串的深拷贝）" }
+    ],
+    "practice": "用时钟对比 push_back(临时对象) 与 push_back(std::move(obj)) 的耗时",
+    "accept": "能说出 std::move 之后原对象处于「有效但内容不确定」的状态",
+    "keywords": "右值引用 std::move 移动语义 拷贝"
+  },
+  {
+    "day": 44,
+    "week": 7,
+    "title": "移动构造与 Rule of Zero",
+    "goal": "知道什么时候必须自己写、什么时候别写",
+    "blocks": [
+      { "m": 40, "t": "移动构造与移动赋值的写法、noexcept 的作用" },
+      { "m": 50, "t": "Rule of Five 与 Rule of Zero：用构造函数写一个自己管理资源的类" },
+      { "m": 30, "t": "同一个类用 vector 或 unique_ptr 重写一版对比" }
+    ],
+    "practice": "写 Buffer 类（自己 new/delete）补齐五件套，再用 vector 版本重写对比行数",
+    "accept": "能说出为什么优先 Rule of Zero",
+    "keywords": "移动构造 Rule of Five Rule of Zero noexcept"
+  },
+  {
+    "day": 45,
+    "week": 7,
+    "title": "optional / variant / tuple",
+    "goal": "用类型表达「可能没有值」和「多种类型」",
+    "blocks": [
+      { "m": 40, "t": "std::optional 的用法，替代返回 -1 或空字符串的老办法" },
+      { "m": 50, "t": "std::variant 存多种类型、std::tuple 与结构化绑定 auto [a,b] = ..." },
+      { "m": 30, "t": "用 optional 改写一个「查找并返回」的函数" }
+    ],
+    "practice": "写 findSeq(name) 返回 optional<Seq>，main 里判断有无并打印",
+    "accept": "能说出 optional 相比返回特殊值的好处",
+    "keywords": "optional variant tuple 结构化绑定"
+  },
+  {
+    "day": 46,
+    "week": 7,
+    "title": "auto、decltype 与统一初始化",
+    "goal": "把代码写短，但不牺牲可读性",
+    "blocks": [
+      { "m": 40, "t": "auto 的推导规则、decltype、using 别名替代 typedef" },
+      { "m": 50, "t": "统一初始化 {}、nullptr、范围 for 里 auto / auto& / const auto& 的取舍" },
+      { "m": 30, "t": "把一段冗长的老式代码改成现代写法" }
+    ],
+    "practice": "重写一段代码，用 auto + 范围 for + using 把行数减少三成",
+    "accept": "能说出什么时候不该用 auto（影响可读性、需要明确类型时）",
+    "keywords": "auto decltype using 统一初始化 auto&"
+  },
+  {
+    "day": 47,
+    "week": 7,
+    "title": "string_view 与 constexpr",
+    "goal": "知道零拷贝和编译期计算的价值",
+    "blocks": [
+      { "m": 40, "t": "std::string_view 是什么、为什么零拷贝、生命周期风险在哪" },
+      { "m": 50, "t": "把函数参数从 const string& 改成 string_view；用 constexpr 生成常量表" },
+      { "m": 30, "t": "编译期成本与运行期成本的区别" }
+    ],
+    "practice": "把词频统计函数的参数改成 string_view，对比改前改后的调用方式",
+    "accept": "能解释 string_view 为什么不能用来长期保存数据",
+    "keywords": "string_view constexpr 性能 生命周期"
+  },
+  {
+    "day": 48,
+    "week": 7,
+    "title": "现代 C++ 概览：filesystem 与并行算法",
+    "goal": "知道标准库还能做什么，不必都自己写",
+    "blocks": [
+      { "m": 40, "t": "std::filesystem 常用 API：遍历目录、取文件大小、路径拼接" },
+      { "m": 50, "t": "并行算法 std::execution、ranges 与 concepts 各了解一句话" },
+      { "m": 30, "t": "写小工具：列出目录下所有 .fastq 文件及大小" }
+    ],
+    "practice": "filesystem 小工具跑通，能打印文件名 + 大小（可读格式）",
+    "accept": "能说出哪些特性是 C++11/14/17/20 各自引入的",
+    "keywords": "filesystem 并行算法 ranges concepts C++17 C++20"
+  },
+  {
+    "day": 49,
+    "week": 7,
+    "title": "复盘日：把里程碑程序现代化",
+    "goal": "把会写变成写得好",
+    "blocks": [
+      { "m": 60, "t": "把 D42 的程序全面改造：智能指针 + optional + string_view + 移动语义 + 范围 for" },
+      { "m": 40, "t": "前后对比：行数、耗时、可读性，记录改进点" },
+      { "m": 20, "t": "写 notes/week07.md" }
+    ],
+    "practice": "改造后的程序能跑出同样结果，代码行数更少",
+    "accept": "无裸指针；能逐条说出改了什么、为什么改",
+    "keywords": "现代化 重构 string_view optional 智能指针"
+  },
+  {
+    "day": 50,
+    "week": 8,
+    "title": "多文件工程：头文件与源文件",
+    "goal": "从单文件脚本走向真正的工程",
+    "blocks": [
+      { "m": 40, "t": "声明与定义的分工、头文件放什么、#pragma once 或 include guard" },
+      { "m": 50, "t": "把 Seq 类拆成 seq.h + seq.cpp + main.cpp，分别编译再链接" },
+      { "m": 30, "t": "常见错误：重复定义、undefined reference、头文件互相包含" }
+    ],
+    "practice": "拆分完成并用 g++ *.cpp -o app 一次编译通过",
+    "accept": "能解释为什么要拆、链接错误 undefined reference 通常意味着什么",
+    "keywords": "头文件 源文件 include guard 链接错误"
+  },
+  {
+    "day": 51,
+    "week": 8,
+    "title": "CMake 入门",
+    "goal": "用 CMake 管理构建",
+    "blocks": [
+      { "m": 40, "t": "CMake 是什么（生成构建系统）、最小 CMakeLists.txt、cmake -B build 流程" },
+      { "m": 50, "t": "把 D50 的工程写成 CMakeLists.txt 并构建成功" },
+      { "m": 30, "t": "cmake --build build、目标名、源文件列表写法" }
+    ],
+    "practice": "用 CMake 构建出可执行文件并运行",
+    "accept": "能说出构建目录为什么单独放、cmake 生成的是什么",
+    "keywords": "CMake CMakeLists add_executable 构建"
+  },
+  {
+    "day": 52,
+    "week": 8,
+    "title": "CMake 进阶：库目标与构建类型",
+    "goal": "搭出标准的项目骨架",
+    "blocks": [
+      { "m": 40, "t": "add_library、target_link_libraries、PUBLIC / PRIVATE 的区别" },
+      { "m": 50, "t": "把核心逻辑做成静态库，main 链接它；切 Debug / Release 各构建一次" },
+      { "m": 30, "t": "FetchContent 拉第三方库（网络慢就只看用法）" }
+    ],
+    "practice": "工程改成 src/ + include/ + tests/ 三目录结构",
+    "accept": "能解释 include 目录为何独立、库目标如何被链接",
+    "keywords": "add_library target_link_libraries Debug Release FetchContent"
+  },
+  {
+    "day": 53,
+    "week": 8,
+    "title": "编译警告与调试器",
+    "goal": "用工具而不是 printf 找 bug",
+    "blocks": [
+      { "m": 40, "t": "开 -Wall -Wextra -Wpedantic，把警告一条条修掉" },
+      { "m": 50, "t": "gdb 基础：断点、next / step、print、bt 看调用栈" },
+      { "m": 30, "t": "用 gdb 定位一个故意写错的下标越界" }
+    ],
+    "practice": "在 CMake 里加编译选项；用 gdb 跑程序并在断点处打印变量",
+    "accept": "能修掉一个 warning 并解释原因；能在 gdb 里查看变量值",
+    "keywords": "-Wall gdb 断点 backtrace 调试"
+  },
+  {
+    "day": 54,
+    "week": 8,
+    "title": "单元测试",
+    "goal": "让代码改坏了能立刻发现",
+    "blocks": [
+      { "m": 40, "t": "为什么写测试、测试的基本结构（用例、断言、期望）" },
+      { "m": 50, "t": "接入 Catch2（单头文件），为 Seq 写 5 个测试用例" },
+      { "m": 30, "t": "用 ctest 集成到 CMake（可选）" }
+    ],
+    "practice": "给 GC 含量、序列长度等功能写测试；故意塞一个 bug 看测试报错",
+    "accept": "测试能跑；人为 bug 被测试抓出来",
+    "keywords": "Catch2 单元测试 断言 ctest"
+  },
+  {
+    "day": 55,
+    "week": 8,
+    "title": "优化与内存检查",
+    "goal": "先测量再优化，用工具查内存问题",
+    "blocks": [
+      { "m": 40, "t": "编译优化 -O2/-O3、用 chrono 测量耗时的方法" },
+      { "m": 50, "t": "AddressSanitizer：-fsanitize=address 查出越界与泄漏" },
+      { "m": 30, "t": "性能分析的基本思路：找到热点再动手" }
+    ],
+    "practice": "写一个越界访问的程序，用 ASan 抓出来并读懂报告",
+    "accept": "ASan 报出错误位置；能说出为什么不该凭感觉优化",
+    "keywords": "-O2 ASan chrono 性能测量"
+  },
+  {
+    "day": 56,
+    "week": 8,
+    "title": "复盘日：工程化收尾",
+    "goal": "做出别人能跑起来的项目",
+    "blocks": [
+      { "m": 50, "t": "整理工程：CMake + 库目标 + 测试 + 编译选项，全绿通过" },
+      { "m": 40, "t": "写 README：功能、构建步骤、运行示例、目录结构" },
+      { "m": 30, "t": "git init + .gitignore（忽略 build）+ 首次提交" }
+    ],
+    "practice": "换个目录克隆自己的仓库，按 README 一步步构建成功",
+    "accept": "README 的步骤能照着跑通；仓库里没有 build 产物",
+    "keywords": "工程结构 README git .gitignore"
+  },
+  {
+    "day": 57,
+    "week": 9,
+    "title": "std::thread 基础",
+    "goal": "让程序同时做几件事",
+    "blocks": [
+      { "m": 40, "t": "std::thread 创建、join 与 detach、传参（引用要 std::ref）" },
+      { "m": 50, "t": "写两个线程并行跑任务，观察输出交错的现象" },
+      { "m": 30, "t": "hardware_concurrency 看本机核数" }
+    ],
+    "practice": "开 4 个线程各算一段累加，主线程汇总（先不管数据竞争）",
+    "accept": "能说出 join 不做会怎样；能解释输出为什么交错",
+    "keywords": "std::thread join detach 并发"
+  },
+  {
+    "day": 58,
+    "week": 9,
+    "title": "mutex：保护共享数据",
+    "goal": "知道数据竞争长什么样、怎么修",
+    "blocks": [
+      { "m": 40, "t": "数据竞争是什么、mutex、lock_guard、unique_lock" },
+      { "m": 50, "t": "先复现竞争（多线程累加结果出错），再用 mutex 修好" },
+      { "m": 30, "t": "死锁的成因与避免：固定加锁顺序、锁范围尽量小" }
+    ],
+    "practice": "把 D57 的累加改成线程安全版本，连跑 10 次结果都正确",
+    "accept": "能解释「为什么加锁就对」，也能说出锁太大反而慢的原因",
+    "keywords": "mutex lock_guard 数据竞争 死锁"
+  },
+  {
+    "day": 59,
+    "week": 9,
+    "title": "atomic 与条件变量",
+    "goal": "会用更轻的同步工具，会做线程间等待",
+    "blocks": [
+      { "m": 40, "t": "std::atomic 的用法与适用场景、内存序（了解）" },
+      { "m": 50, "t": "condition_variable 实现生产者-消费者模型" },
+      { "m": 30, "t": "atomic 与 mutex 保护同一变量时的性能差别" }
+    ],
+    "practice": "写生产者-消费者：一个队列、1 个生产者线程、2 个消费者线程",
+    "accept": "程序正常结束不死锁；能说出条件变量为什么必须搭配 mutex",
+    "keywords": "atomic condition_variable 生产者消费者"
+  },
+  {
+    "day": 60,
+    "week": 9,
+    "title": "async 与 future",
+    "goal": "用更高层的接口写并行",
+    "blocks": [
+      { "m": 40, "t": "std::async 与 std::future、get() 的阻塞语义、异常如何传回" },
+      { "m": 50, "t": "用 async 并行算多个独立任务再汇总；promise / packaged_task 了解" },
+      { "m": 30, "t": "每任务一线程 vs 线程池的差别" }
+    ],
+    "practice": "用 async 并行统计 4 个文件的核心指标并汇总",
+    "accept": "能说出 async 相比手动 thread 的优势（返回值、异常）",
+    "keywords": "async future promise 并行"
+  },
+  {
+    "day": 61,
+    "week": 9,
+    "title": "手写线程池",
+    "goal": "理解线程池内部到底怎么转",
+    "blocks": [
+      { "m": 40, "t": "线程池原理：任务队列 + 工作线程 + 条件变量" },
+      { "m": 60, "t": "手写 ThreadPool：submit 返回 future<结果>" },
+      { "m": 20, "t": "提交 100 个任务，确认全部完成" }
+    ],
+    "practice": "线程池类可用，每个成员加注释说明作用",
+    "accept": "100 个任务全部完成不崩溃；能讲清工作线程的循环逻辑",
+    "keywords": "线程池 任务队列 条件变量 手写"
+  },
+  {
+    "day": 62,
+    "week": 9,
+    "title": "并发实战：并行统计",
+    "goal": "拿到真实的加速比数据",
+    "blocks": [
+      { "m": 40, "t": "把统计任务按数据切块、设计结果合并方式" },
+      { "m": 60, "t": "用线程池并行统计（k-mer 计数），与单线程版本对比" },
+      { "m": 20, "t": "记录数据：序列条数、k、单线程耗时、4 线程耗时、加速比" }
+    ],
+    "practice": "并行版程序 + 一张耗时表",
+    "accept": "并行结果与单线程完全一致；有实测加速比数字",
+    "keywords": "并行加速 k-mer 加速比 线程池实战"
+  },
+  {
+    "day": 63,
+    "week": 9,
+    "title": "复盘日 + 并发刷题",
+    "goal": "把并发知识固化成判断力",
+    "blocks": [
+      { "m": 60, "t": "并发题 3 道（按序打印、交替打印、多线程求和）" },
+      { "m": 40, "t": "整理并发笔记：什么场景用 mutex / atomic / 条件变量 / async" },
+      { "m": 20, "t": "写 notes/week09.md" }
+    ],
+    "practice": "三道题都能跑出正确顺序",
+    "accept": "笔记里有自己总结的选型规则",
+    "keywords": "并发题 复盘 选型"
+  }
+]

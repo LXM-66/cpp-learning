@@ -1,0 +1,11 @@
+# 编译产物，不入库
+*.exe
+*.o
+*.obj
+*.out
+
+# VS Code 缓存
+.vscode/ipch/
+
+# 临时的验证目录
+tools/verify/

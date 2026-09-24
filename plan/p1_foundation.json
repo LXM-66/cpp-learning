@@ -1,0 +1,296 @@
+[
+  {
+    "day": 1,
+    "week": 1,
+    "title": "装好工具链，跑通第一个 C++ 程序",
+    "goal": "终端里 g++ 能编译，能看到自己的程序真的跑起来",
+    "blocks": [
+      { "m": 50, "t": "装 MSYS2（官网下载安装），在 MSYS2 终端执行：pacman -S mingw-w64-ucrt-x86_64-gcc；把 ...\\ucrt64\\bin 加进系统 PATH，新开终端执行 g++ --version 看到版本号" },
+      { "m": 40, "t": "VS Code 装 C/C++ 扩展，新建 D:/Code/cpp-learning/code/day01/hello.cpp，写 #include <iostream> + main + std::cout 输出一行字" },
+      { "m": 30, "t": "在该目录终端执行 g++ hello.cpp -o hello 再 ./hello；把每条命令和遇到的报错原文记到 notes/day01.md" }
+    ],
+    "practice": "让程序打印你的姓名、专业、今天日期三行；改一次内容重新编译，看输出变化",
+    "accept": "g++ --version 有输出；编译零报错；运行看到三行中文（乱码就查终端 UTF-8 设置）",
+    "keywords": "MSYS2 安装 g++ VS Code 配置 Hello World"
+  },
+  {
+    "day": 2,
+    "week": 1,
+    "title": "一次编译到底发生了什么",
+    "goal": "说清 .cpp 到可执行文件的四步，并学会读最简单的报错",
+    "blocks": [
+      { "m": 40, "t": "看「预处理 / 编译 / 汇编 / 链接」四步；手动各跑一次 g++ -E、g++ -S、g++ -c、g++，看生成的文件后缀" },
+      { "m": 50, "t": "写 structure.cpp：包含头文件、using namespace std、注释、main 返回值；故意删掉一个分号，观察报错里的文件名和行号" },
+      { "m": 30, "t": "笔记：四种命令各自产物是什么、报错格式 file:line: error: ... 怎么读" }
+    ],
+    "practice": "写程序：定义两个 int 相加并输出；再故意写错变量名，读报错到底在说什么",
+    "accept": "能不看资料说出四步产物；能从报错里指出文件名与行号",
+    "keywords": "预处理 编译 汇编 链接 g++ -c -S -E 报错解读"
+  },
+  {
+    "day": 3,
+    "week": 1,
+    "title": "变量与基本类型",
+    "goal": "知道每种类型存什么、占多大、什么时候会出意外",
+    "blocks": [
+      { "m": 40, "t": "int/long/long long/double/float/char/bool 的取值范围与 sizeof；整数溢出、浮点精度这两个坑各写一个例子" },
+      { "m": 50, "t": "写 types.cpp 打印各种类型的 sizeof；再写摄氏转华氏、圆面积（用 const double PI）" },
+      { "m": 30, "t": "笔记：什么场景用整数、什么场景用小数、什么场景用 bool" }
+    ],
+    "practice": "用 cin 读身高体重算 BMI（注意用 double）",
+    "accept": "能解释 int/int 为什么丢小数；能说出 double 与 float 的精度差别",
+    "keywords": "基本类型 sizeof 类型转换 精度"
+  },
+  {
+    "day": 4,
+    "week": 1,
+    "title": "运算符与表达式",
+    "goal": "算对、比对、逻辑判断不出错",
+    "blocks": [
+      { "m": 50, "t": "算术 / 取模 / 整数除法、比较、逻辑与短路、自增自减、复合赋值；优先级与括号" },
+      { "m": 40, "t": "位运算概念入门：& | ^ ~ << >>，各写一行例子打印结果" },
+      { "m": 30, "t": "写运算练习：判断闰年；交换两个变量的三种写法" }
+    ],
+    "practice": "输入一个三位数，输出各位数字之和",
+    "accept": "能解释 7/2、7%2、7.0/2 三个结果；闰年判断逻辑正确",
+    "keywords": "运算符 优先级 位运算 闰年"
+  },
+  {
+    "day": 5,
+    "week": 1,
+    "title": "控制流：让程序会做选择",
+    "goal": "会用 if/switch 和三种循环写出有逻辑的程序",
+    "blocks": [
+      { "m": 40, "t": "if / else if / else、switch、布尔表达式与短路求值" },
+      { "m": 50, "t": "for / while / do-while、break / continue、嵌套循环；写九九乘法表" },
+      { "m": 30, "t": "写程序打印 1 到 100 之间的素数" }
+    ],
+    "practice": "猜数字游戏：答案写死在程序里，用 while + if 让用户反复猜到对",
+    "accept": "素数输出正确；九九表格式整齐；能说出 break 与 continue 的区别",
+    "keywords": "if switch for while break continue"
+  },
+  {
+    "day": 6,
+    "week": 1,
+    "title": "函数：把代码切成小块",
+    "goal": "会定义、调用、重载函数，理解值传递",
+    "blocks": [
+      { "m": 40, "t": "函数定义 / 调用 / 返回值、形参与实参、声明与定义分离" },
+      { "m": 50, "t": "函数重载与默认参数；写 add(int,int)、add(double,double)、add(int,int,int) 并分别调用" },
+      { "m": 30, "t": "把前几天的练习拆成函数：每个小功能一个函数" }
+    ],
+    "practice": "写 max3(a,b,c)、isPrime(n)、printTable(n) 三个函数并在 main 里组合使用",
+    "accept": "能解释值传递为什么改不了调用者的变量；重复代码被抽成函数",
+    "keywords": "函数 重载 默认参数 值传递"
+  },
+  {
+    "day": 7,
+    "week": 1,
+    "title": "复盘日：整理 + 补课 + 自测",
+    "goal": "把第一周的东西变成自己的，而不是看过",
+    "blocks": [
+      { "m": 40, "t": "把 W1 的代码整理到 D:/Code/cpp-learning/code/，每个程序加一行注释说明用途" },
+      { "m": 50, "t": "补做没完成的练习；不看旧代码，从零重打一遍 hello.cpp" },
+      { "m": 30, "t": "写 notes/week01.md：学会的 5 件事 + 还糊涂的 2 件事（要具体）" }
+    ],
+    "practice": "合上资料，从零写一个「输入三个数输出最大值」的完整程序并编译运行",
+    "accept": "week01.md 里「还糊涂的」写得具体；能不看资料重写 hello.cpp",
+    "keywords": "复盘 笔记 自测"
+  },
+  {
+    "day": 8,
+    "week": 2,
+    "title": "std::string：文本处理的第一步",
+    "goal": "会用字符串做查找、截取、拼接",
+    "blocks": [
+      { "m": 40, "t": "创建 / 拼接 / 长度 / 比较 / 索引 / substr / find；写一遍每种操作" },
+      { "m": 50, "t": "写三个小程序：统计某字符出现次数、反转字符串、判断回文" },
+      { "m": 30, "t": "getline 读整行；搞清 cin >> 与 getline 混用为什么会漏读一行" }
+    ],
+    "practice": "读入一句英文，输出单词数、字符数、第一个和最后一个单词",
+    "accept": "能解释 cin >> 遇空格截断；回文判断正确",
+    "keywords": "std::string substr find getline 回文"
+  },
+  {
+    "day": 9,
+    "week": 2,
+    "title": "std::vector：会长的数组",
+    "goal": "会用容器存一批数据并遍历",
+    "blocks": [
+      { "m": 40, "t": "vector 概念、push_back、size、下标访问、范围 for" },
+      { "m": 50, "t": "读入 n 个成绩，求平均 / 最大 / 最小、统计及格人数" },
+      { "m": 30, "t": "at() 与 [] 的区别；故意越界一次观察会发生什么" }
+    ],
+    "practice": "连续读整数直到输入 0，输出正数个数、总和、平均值",
+    "accept": "能说出越界为什么危险；vector 的遍历写法熟练",
+    "keywords": "vector push_back size 范围for at"
+  },
+  {
+    "day": 10,
+    "week": 2,
+    "title": "引用：C++ 和 Python 最不一样的地方",
+    "goal": "理解值语义，会用引用传参",
+    "blocks": [
+      { "m": 40, "t": "引用是什么、左值与右值、引用与指针的直觉差别" },
+      { "m": 50, "t": "引用传参写 swap(int&,int&)；写 const 引用避免大对象拷贝" },
+      { "m": 30, "t": "对照 Python：为什么 Python 的函数改列表能改到外面，C++ 默认不能" }
+    ],
+    "practice": "写 void addOne(int& n) 与 void addOneWrong(int n) 对比输出；再写引用版 swap",
+    "accept": "能讲清 C++ 默认值传递，并解释 Python 为什么感觉可以",
+    "keywords": "引用 左值 引用传参 const引用 值语义"
+  },
+  {
+    "day": 11,
+    "week": 2,
+    "title": "指针（上）：地址与解引用",
+    "goal": "读懂 & 和 *，不再怕指针",
+    "blocks": [
+      { "m": 40, "t": "内存地址、取地址 &、解引用 *、nullptr、指针的类型" },
+      { "m": 50, "t": "写例子：用指针改值、指针与数组的关系、用指针遍历数组" },
+      { "m": 30, "t": "笔记：* 与 & 在声明处和使用处的不同含义" }
+    ],
+    "practice": "用指针交换两个变量；用指针遍历数组求和",
+    "accept": "能区分 int* p 与 *p；不会对 nullptr 解引用",
+    "keywords": "指针 地址 解引用 nullptr 数组"
+  },
+  {
+    "day": 12,
+    "week": 2,
+    "title": "指针（下）：指针算术与 const 指针",
+    "goal": "看懂指针运算和只读指针的四种写法",
+    "blocks": [
+      { "m": 40, "t": "指针加减、比较、数组退化；const int* 与 int* const 的区别" },
+      { "m": 50, "t": "写数组反转（指针版）、写 int* findMax(int* arr,int n) 返回最大元素地址" },
+      { "m": 30, "t": "二级指针是什么、什么时候真的需要（了解即可）" }
+    ],
+    "practice": "用指针版 findMax 打印最大值和它的下标",
+    "accept": "能解释 *(arr+i) 等价 arr[i]；能说清两种 const 指针谁不能改",
+    "keywords": "指针算术 数组退化 const指针 二级指针"
+  },
+  {
+    "day": 13,
+    "week": 2,
+    "title": "栈与堆：内存的两个世界",
+    "goal": "知道 new/delete 在干什么，为什么会内存泄漏",
+    "blocks": [
+      { "m": 40, "t": "栈内存 vs 堆内存、对象生命周期、new/delete、new[]/delete[]" },
+      { "m": 50, "t": "写按输入 n 动态分配数组、求和、释放；再写一个动态二维数组" },
+      { "m": 30, "t": "故意写一次内存泄漏和一次悬空指针，看现象（为什么接下来要学 RAII）" }
+    ],
+    "practice": "用 new 分配 n 个 int，读入、求和、delete[] 释放",
+    "accept": "能说出忘记 delete 会发生什么；不会访问已释放的内存",
+    "keywords": "new delete 堆 栈 内存泄漏 悬空指针"
+  },
+  {
+    "day": 14,
+    "week": 2,
+    "title": "复盘日：五个手写自测题",
+    "goal": "检验前两周是不是真的会写，而不是看懂",
+    "blocks": [
+      { "m": 50, "t": "不看笔记手写 5 题：类型转换、引用传参、指针交换、动态数组、字符串统计" },
+      { "m": 40, "t": "编译运行，错的对着笔记重写一遍，记录错在哪" },
+      { "m": 30, "t": "写 notes/week02.md：这周最卡的一个点是什么" }
+    ],
+    "practice": "五道题全部手写一遍并编译通过",
+    "accept": "至少 4 题独立写对；每题能讲出关键行在做什么",
+    "keywords": "自测 复盘 指针 引用 内存"
+  },
+  {
+    "day": 15,
+    "week": 3,
+    "title": "struct 与 enum：把数据打包",
+    "goal": "用自定义类型描述现实里的东西",
+    "blocks": [
+      { "m": 40, "t": "struct 定义与使用、成员访问、struct 作为参数和返回值" },
+      { "m": 50, "t": "定义 struct Point{double x,y;} 和 struct Student{string name; vector<int> scores;}，各写一个打印函数" },
+      { "m": 30, "t": "enum 与 enum class：用枚举表示状态（读/写/关闭）" }
+    ],
+    "practice": "定义 struct Seq{string name; string bases;}，写函数打印名字和长度",
+    "accept": "能说出 struct 与 class 的唯一区别；知道传 struct 会整体拷贝",
+    "keywords": "struct enum enum class 聚合初始化"
+  },
+  {
+    "day": 16,
+    "week": 3,
+    "title": "class：把数据和操作放在一起",
+    "goal": "会写第一个类，理解构造与析构",
+    "blocks": [
+      { "m": 40, "t": "类定义、public/private、成员函数、this 指针" },
+      { "m": 50, "t": "构造函数（默认 / 带参 / 重载）、析构函数、对象创建与销毁的时机" },
+      { "m": 30, "t": "把 D15 的 struct 改写成 class：数据私有、用成员函数访问" }
+    ],
+    "practice": "写 class Counter：构造给初值、inc()、value()、print()",
+    "accept": "能说出构造/析构分别在什么时候被调用；能解释为什么成员变量要私有",
+    "keywords": "class 构造函数 析构函数 public private this"
+  },
+  {
+    "day": 17,
+    "week": 3,
+    "title": "封装细节：初始化列表与 static",
+    "goal": "把类写得更规范",
+    "blocks": [
+      { "m": 40, "t": "成员初始化列表、初始化顺序、类内默认成员值" },
+      { "m": 50, "t": "const 成员函数、static 成员变量与函数；给 Counter 加实例计数器" },
+      { "m": 30, "t": "拷贝构造函数的默认行为（了解，W6 再深入）" }
+    ],
+    "practice": "每创建一个对象，static 计数 +1，程序结束打印总创建数",
+    "accept": "能解释初始化列表为什么优先于函数体赋值；static 成员访问方式正确",
+    "keywords": "初始化列表 const成员函数 static 拷贝构造"
+  },
+  {
+    "day": 18,
+    "week": 3,
+    "title": "运算符重载：让自己的类型像内置类型",
+    "goal": "会重载 + == 和 <<",
+    "blocks": [
+      { "m": 40, "t": "为什么要重载、成员函数 vs 友元、哪些运算符不建议重载" },
+      { "m": 50, "t": "写 Vec2 类，重载 +、==、<<（实现 cout << a << b 链式输出）" },
+      { "m": 30, "t": "给 D15 的 Seq 重载 <<，打印「名字(长度)」" }
+    ],
+    "practice": "Vec2 的加法和比较写完整，在 main 里演示链式输出",
+    "accept": "能解释 operator<< 为什么返回 ostream&；重载后编译运行正确",
+    "keywords": "运算符重载 friend operator<< ostream"
+  },
+  {
+    "day": 19,
+    "week": 3,
+    "title": "继承：复用与扩展",
+    "goal": "会写基类和派生类",
+    "blocks": [
+      { "m": 40, "t": "基类与派生类、public 继承、protected、构造与析构顺序" },
+      { "m": 50, "t": "写 Shape 基类 + Circle/Rect 派生类，各自实现 area()" },
+      { "m": 30, "t": "派生类调用基类构造、成员遮蔽问题" }
+    ],
+    "practice": "写 Animal 基类 → Dog / Cat 派生类，各自有 speak() 和名字",
+    "accept": "能说出构造与析构的调用顺序（基类先构造、后析构）",
+    "keywords": "继承 protected 派生类 构造顺序"
+  },
+  {
+    "day": 20,
+    "week": 3,
+    "title": "多态：一个接口多种实现",
+    "goal": "理解 virtual 到底解决了什么问题",
+    "blocks": [
+      { "m": 40, "t": "virtual 函数、动态绑定、override 关键字、虚析构函数" },
+      { "m": 50, "t": "把 Shape 的 area() 改成 virtual，用基类指针数组调用各派生类实现" },
+      { "m": 30, "t": "纯虚函数与抽象类；为什么基类析构要 virtual" }
+    ],
+    "practice": "先写一版没有 virtual 的，看输出错在哪；再加上 virtual 对比",
+    "accept": "能解释「去掉 virtual 结果就不对」的原因；能说出虚析构的必要性",
+    "keywords": "多态 virtual override 纯虚函数 虚析构"
+  },
+  {
+    "day": 21,
+    "week": 3,
+    "title": "复盘日：把散代码重构成一个类库",
+    "goal": "第一次把学到的东西拼成能用的东西",
+    "blocks": [
+      { "m": 50, "t": "写 class Seq：名字、序列、长度、GC 含量四个功能" },
+      { "m": 40, "t": "加运算符重载 << 和 ==，写 main 创建 3 个 Seq 并打印" },
+      { "m": 30, "t": "写 notes/week03.md：封装 / 继承 / 多态各用自己的一句话总结" }
+    ],
+    "practice": "Seq 类完整可运行，main 里演示全部功能",
+    "accept": "能编译运行；三句话总结是理解不是抄定义",
+    "keywords": "封装 继承 多态 类库 重构"
+  }
+]
