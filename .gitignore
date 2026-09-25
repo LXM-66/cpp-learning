@@ -4,6 +4,10 @@
 *.obj
 *.out
 
+# 预处理 / 汇编中间产物
+*.i
+*.s
+
 # VS Code 缓存
 .vscode/ipch/
 
